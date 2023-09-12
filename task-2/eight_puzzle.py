@@ -1,4 +1,5 @@
 import copy
+from math import floor
 
 
 def initial_state():
@@ -50,5 +51,14 @@ def h1(s):
 
 def h3(s):
     # implement this function
+    goal = (1, 2, 3, 4, 5, 6, 7, 8, 0)
     board, _, _ = s
-    return 0
+    res = 0
+    for idx in range(1,9):
+        #check columns
+        if goal[idx]%3 != board[idx]%3:
+            res +=1
+        #check rows
+        if floor((goal[idx]+2)/3) != floor((board[idx]+2)/3):
+            res +=1
+    return res
